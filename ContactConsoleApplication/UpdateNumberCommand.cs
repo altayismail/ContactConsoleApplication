@@ -38,6 +38,18 @@ namespace ContactConsoleApplication
                     Console.WriteLine($"{ToTitleCase(name)} {ToTitleCase(lastName)} rehberde bulundu. Lütfen yeni telefon numarasını giriniz.");
                     Console.Write("Telefon No: ");
                     string phoneNumber = Console.ReadLine();
+                    if(personDb.Any<Person>(x => x.PhoneNumber == phoneNumber))
+                    {
+                        Console.Write("Güncellemek istediğiniz numara zaten bulunmaktadır.\n" +
+                            "(1) Güncelleme işlemini sonlandır\n" +
+                            "(2) Güncelleme işlemini tekrar dene\n" +
+                            "Seçim : ");
+                        int choice = int.Parse(Console.ReadLine());
+                        if (choice == 1)
+                            break;
+                        else if (choice == 2)
+                            continue;
+                    }
                     person.PhoneNumber = phoneNumber;
                     Console.WriteLine($"{ToTitleCase(name)} {ToTitleCase(lastName)} adlı kişinin numarası başarılı bir şekilde güncellendi.");
                     break;
