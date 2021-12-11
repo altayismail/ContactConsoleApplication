@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ContactConsoleApplication.DBOperations;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ContactConsoleApplication
 {
@@ -7,6 +9,10 @@ namespace ContactConsoleApplication
     {
          public static void Main(string[] args)
         {
+            DataGenerator.Initialize();
+            LINQDBContext _context = new();
+            List<Person> PersonDb = _context.People.ToList<Person>();
+
             while (true)
             {
                 MenuScript();
@@ -18,23 +24,23 @@ namespace ContactConsoleApplication
                 {
                     case 1:
                         CreatePersonCommand createPerson = new();
-                        createPerson.Handle(PeopleDb);
+                        createPerson.Handle(PersonDb);
                         break;
                     case 2:
                         DeletePersonCommand deletePerson = new();
-                        deletePerson.Handle(PeopleDb);
+                        deletePerson.Handle(PersonDb);
                         break;
                     case 3:
                         UpdateNumberCommand updateNumber = new();
-                        updateNumber.Handle(PeopleDb);
+                        updateNumber.Handle(PersonDb);
                         break;
                     case 4:
                         GetPersonsQuery query = new();
-                        query.Handle(PeopleDb);
+                        query.Handle(PersonDb);
                         break;
                     case 5:
                         GetPersonDetailQuery detailQuery = new();
-                        detailQuery.Handle(PeopleDb);
+                        detailQuery.Handle(PersonDb);
                         break;
                     default:
                         Console.WriteLine("Hatalı işlem yaptınız, tekrar deneyiniz.");
@@ -54,27 +60,5 @@ namespace ContactConsoleApplication
                               "(5) Rehberden Kişi Ara\n" +
                               "*************************************");
         }
-
-        public static List<Person> PeopleDb = new List<Person>()
-        {
-            new Person
-            {
-                Name = "Ismail",
-                LastName = "Altay",
-                PhoneNumber = "5071457816"
-            },
-            new Person
-            {
-                Name = "Gurkan",
-                LastName = "Bollukcu",
-                PhoneNumber = "5071457817"
-            },
-            new Person
-            {
-                Name = "Bora",
-                LastName = "Altay",
-                PhoneNumber = "5071457818"
-            }
-        };
     }
 }

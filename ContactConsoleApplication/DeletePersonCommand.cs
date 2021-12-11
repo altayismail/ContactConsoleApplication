@@ -34,19 +34,20 @@ namespace ContactConsoleApplication
                 }
                 else if(person is not null)
                 {
-                    Console.WriteLine($"{ToTitleCase(name)} {ToTitleCase(lastName)} adlı kişi rehberden siliniyor. Emin misiniz? Evet(e) veya Hayır(h)");
+                    Console.Write($"{ToTitleCase(name)} {ToTitleCase(lastName)} adlı kişi rehberden siliniyor. Emin misiniz? Evet(e) veya Hayır(h): ");
                     string choice = Console.ReadLine();
-                    if(choice == "e")
+                    if (choice == "e")
                     {
                         personDb.Remove(person);
                         Console.WriteLine("Kişi rehberden başarılı bir şekilde silindi.");
                     }
-                    else if(choice == "h")
+                    else if (choice == "h")
                     {
                         Console.WriteLine("Silme işlemi iptal edildi. Menüye dönülüyor.");
                         break;
                     }
-                    
+                    else
+                        Console.WriteLine("Hatalı giriş yaptınız, menüye dönülüyor...");
                     break;
                 }
             }
