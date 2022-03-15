@@ -1,4 +1,5 @@
 ﻿using ContactConsoleApplication.DBOperations;
+using ContactConsoleApplication.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,10 @@ namespace ContactConsoleApplication
                         GetPersonDetailQuery detailQuery = new();
                         detailQuery.Handle(PersonDb);
                         break;
+                    case 6:
+                        GetContactsSearch searchQuery = new();
+                        searchQuery.Handle(PersonDb);
+                        break;
                     default:
                         Console.WriteLine("Hatalı işlem yaptınız, tekrar deneyiniz.");
                         break;
@@ -58,6 +63,7 @@ namespace ContactConsoleApplication
                               "(3) Rehberden Numara Güncelle\n" +
                               "(4) Rehberi Listele\n" +
                               "(5) Rehberden Kişi Ara\n" +
+                              "(6) Rehberde Kişileri Bul\n" +
                               "*************************************");
         }
     }
