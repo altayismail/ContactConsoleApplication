@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactConsoleApplication
 {
@@ -16,6 +13,8 @@ namespace ContactConsoleApplication
                 Console.WriteLine($"Ad        : {person.Name}");
                 Console.WriteLine($"Soyad     : {person.LastName}");
                 Console.WriteLine($"Telefon No: {person.PhoneNumber}");
+                Console.WriteLine($"Şirket    : {person.Company}");
+                Console.WriteLine($"Email     : {person.Email}");
                 Console.WriteLine("__________________________________");
             }
         }

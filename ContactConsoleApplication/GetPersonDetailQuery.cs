@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactConsoleApplication
 {
@@ -33,11 +31,7 @@ namespace ContactConsoleApplication
                     }
                     else if(person is not null)
                     {
-                        Console.WriteLine("__________________________________");
-                        Console.WriteLine($"Ad        : {person.Name}");
-                        Console.WriteLine($"Soyad     : {person.LastName}");
-                        Console.WriteLine($"Telefon No: {person.PhoneNumber}");
-                        Console.WriteLine("__________________________________");
+                        PrintPersonInfo(person);
                         break;
                     }
 
@@ -54,11 +48,7 @@ namespace ContactConsoleApplication
                     }
                     else if(person is not null)
                     {
-                        Console.WriteLine("__________________________________");
-                        Console.WriteLine($"Ad        : {person.Name}");
-                        Console.WriteLine($"Soyad     : {person.LastName}");
-                        Console.WriteLine($"Telefon No: {person.PhoneNumber}");
-                        Console.WriteLine("__________________________________");
+                        PrintPersonInfo(person);
                         break;
                     }
                 }
@@ -68,6 +58,17 @@ namespace ContactConsoleApplication
         public string ToTitleCase(string str)
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
+        }
+
+        public void PrintPersonInfo(Person person)
+        {
+            Console.WriteLine("__________________________________");
+            Console.WriteLine($"Ad        : {person.Name}");
+            Console.WriteLine($"Soyad     : {person.LastName}");
+            Console.WriteLine($"Telefon No: {person.PhoneNumber}");
+            Console.WriteLine($"Şirket    : {person.Company}");
+            Console.WriteLine($"Email     : {person.Email}");
+            Console.WriteLine("__________________________________");
         }
     }
 }

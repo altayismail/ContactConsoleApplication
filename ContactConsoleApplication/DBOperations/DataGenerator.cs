@@ -21,19 +21,25 @@ namespace ContactConsoleApplication.DBOperations
                 {
                     Name = "Ismail",
                     LastName = "Altay",
-                    PhoneNumber = "5071457816"
+                    PhoneNumber = "5071457816",
+                    Email = "ismailaltay@mail.com",
+                    Company = "IYTE"
                 },
                 new Person()
                 {
                     Name = "Gurkan",
                     LastName = "Bollukcu",
-                    PhoneNumber = "5071457817"
+                    PhoneNumber = "5071457817",
+                    Email = "gurkanbollukcu@mail.com",
+                    Company = null
                 },
                 new Person()
                 {
                     Name = "Bora",
                     LastName = "Altay",
-                    PhoneNumber = "5071457818"
+                    PhoneNumber = "5071457818",
+                    Email = "boraaltay@mail.com",
+                    Company = "OAL"
                 }
                 );
                 context.SaveChanges();
