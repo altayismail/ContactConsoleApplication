@@ -17,24 +17,54 @@ namespace ContactConsoleApplication
 
             Console.Write("Email: ");
             string email = Console.ReadLine();
-            if (!email.Contains("@mail.com"))
-                throw new InvalidOperationException("Geçersiz email.");
+            try
+            {
+                if (!email.Contains("@mail.com"))
+                    throw new EmailException("Geçersiz Email!");
+            }
+            catch(EmailException ex)
+            {
+                Console.WriteLine("Hata: " + ex.Message);
+            }
+                
 
             Console.Write("Şirket: ");
             string sirket = Console.ReadLine();
 
             Console.Write("Telefon No (10 Haneli): ");
             string phoneNumber = Console.ReadLine();
-            if (phoneNumber.Length != 10)
-                throw new InvalidOperationException("Telefon numarası 10 haneli olmalıdır '5071457817'.");
-            if(phoneNumber.Any(char.IsLetter))
-                throw new InvalidOperationException("Telefon numarası harf içermemelidir.");
+            try
+            {
+                if (phoneNumber.Length != 10)
+                    throw new InvalidOperationException("Telefon numarası 10 haneli olmalıdır '5071457817'.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine("Hata : " + ex.Message);
+            }
+
+            try
+            {
+                if (phoneNumber.Any(char.IsLetter))
+                    throw new InvalidOperationException("Telefon numarası harf içermemelidir.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine("Hata: " + ex.Message);
+            }
 
             Person person = personDb.SingleOrDefault(person => person.PhoneNumber == phoneNumber);
 
-            if (person is not null)
+            try
             {
-                throw new InvalidOperationException("Rehberde bu numaraya sahip biri veya birileri bulunmaktadır. Bu yüzden numara kaydedilemedi.");
+                if (person is not null)
+                {
+                    throw new InvalidOperationException("Rehberde bu numaraya sahip biri veya birileri bulunmaktadır. Bu yüzden numara kaydedilemedi.");
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine("Hata: " + ex.Message);
             }
 
             Person newPerson = new Person()
@@ -54,6 +84,16 @@ namespace ContactConsoleApplication
         public string ToTitleCase(string str)
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
+        }
+
+    }
+
+    public class EmailException : Exception
+    {
+        public EmailException() { }
+        public EmailException(string message) : base(message)
+        {
+            
         }
     }
 }

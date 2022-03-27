@@ -48,11 +48,26 @@ namespace ContactConsoleApplication
                         else if (choice == 2)
                             continue;
                     }
-                    
-                    if (phoneNumber.Length != 10)
-                        throw new InvalidOperationException("Telefon numarası 10 haneli olmalıdır '5071457817'.");
-                    if (phoneNumber.Any(char.IsLetter))
-                        throw new InvalidOperationException("Telefon numarası harf içermemelidir.");
+
+                    try
+                    {
+                        if (phoneNumber.Length != 10)
+                            throw new InvalidOperationException("Telefon numarası 10 haneli olmalıdır '5071457817'.");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.WriteLine("Hata: " + ex.Message);
+                    }
+
+                    try
+                    {
+                        if (phoneNumber.Any(char.IsLetter))
+                            throw new InvalidOperationException("Telefon numarası harf içermemelidir.");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.WriteLine("Hata: " + ex.Message);
+                    }
 
                     person.PhoneNumber = phoneNumber;
                     Console.WriteLine($"{ToTitleCase(name)} {ToTitleCase(lastName)} adlı kişinin numarası başarılı bir şekilde güncellendi.");

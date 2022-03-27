@@ -26,7 +26,8 @@ namespace ContactConsoleApplication
                     var person = personDb.FirstOrDefault(person => person.Name.ToLower() == name.ToLower() && person.LastName.ToLower() == lastName.ToLower());
                     if (person is null)
                     {
-                        throw new InvalidOperationException($"{ToTitleCase(name)} {ToTitleCase(lastName)} adlı kişi rehberde bulunmamaktadır. Menüye dönülüyor...");
+                        Console.WriteLine($"{ToTitleCase(name)} {ToTitleCase(lastName)} adlı kişi rehberde bulunmamaktadır. Menüye dönülüyor...");
+                        break;
                     }
                     else if(person is not null)
                     {
@@ -42,7 +43,8 @@ namespace ContactConsoleApplication
                     var person = personDb.FirstOrDefault(person => person.PhoneNumber == phoneNumber);
                     if(person is null)
                     {
-                        throw new InvalidOperationException($"{phoneNumber} numarasına sahip kişi rehberde bulunmamaktadır. Menüye dönülüyor...");
+                        Console.WriteLine($"{phoneNumber} numarasına sahip kişi rehberde bulunmamaktadır. Menüye dönülüyor...");
+                        break;
                     }
                     else if(person is not null)
                     {
